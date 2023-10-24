@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/backButton"
+        style="@style/material_button_black"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_centerVertical="true"
+        android:background="@drawable/btn_back"
+        android:stateListAnimator="@null"></com.google.android.material.button.MaterialButton>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/grey_100"></View>
+
+    <TextView
+        android:id="@+id/titleTextView"
+        style="@style/text_medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/backButton"
+        android:paddingLeft="10dp"
+        android:textSize="20dp"></TextView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/searchButton"
+        style="@style/material_button_black"
+        android:fontFamily="@font/notosanskr_medium"
+        android:layout_width="28dp"
+        android:includeFontPadding="false"
+        android:layout_height="28dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/icon_search"
+        android:stateListAnimator="@null"
+        android:visibility="gone"></com.google.android.material.button.MaterialButton>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/menuButton"
+        style="@style/material_button_black"
+        android:fontFamily="@font/notosanskr_medium"
+        android:layout_width="28dp"
+        android:includeFontPadding="false"
+        android:layout_height="28dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/ic_baseline_menu_24"
+        android:stateListAnimator="@null"
+        android:visibility="gone"
+        ></com.google.android.material.button.MaterialButton>
+</RelativeLayout>

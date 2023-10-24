@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    tools:context=".ui.login.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/text_bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="VAMOS"
+            android:textColor="@color/black"
+            android:textSize="48sp"></TextView>
+
+
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputEditText
+        style="@style/text_regular"
+        android:id="@+id/id_ev"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/background_corner_10"
+        android:gravity="left|center_vertical"
+        android:hint="아이디"
+        android:maxLength="11"
+        android:paddingLeft="15dp"
+        android:stateListAnimator="@null"
+        android:textColorHint="@color/hint_color"></com.google.android.material.textfield.TextInputEditText>
+
+    <com.google.android.material.textfield.TextInputEditText
+        style="@style/text_regular"
+        android:id="@+id/pw_ev"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/background_corner_10"
+        android:gravity="left|center_vertical"
+        android:hint="비밀번호"
+        android:paddingLeft="15dp"
+        android:stateListAnimator="@null"
+        android:textColorHint="@color/hint_color"></com.google.android.material.textfield.TextInputEditText>
+
+    <com.google.android.material.button.MaterialButton
+        style="@style/text_medium"
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:gravity="center"
+        android:stateListAnimator="@null"
+        android:text="로그인"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:cornerRadius="10dp"></com.google.android.material.button.MaterialButton>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/login_stroke_color"
+
+            ></View>
+
+        <TextView
+            style="@style/text_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="OR"
+            android:textColor="@color/hint_color"></TextView>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/login_stroke_color"></View>
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        style="@style/text_medium"
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:gravity="center"
+        android:stateListAnimator="@null"
+        android:text="회원가입"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:cornerRadius="10dp"></com.google.android.material.button.MaterialButton>
+</LinearLayout>

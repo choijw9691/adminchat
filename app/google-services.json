@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "881766245589",
+    "project_id": "adminchat-9512f",
+    "storage_bucket": "adminchat-9512f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:881766245589:android:d309ce152afc4c45092e5c",
+        "android_client_info": {
+          "package_name": "com.project.adminchat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0qWwDPAPN4FvxI_DZJxGitaMJaHX3uuY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

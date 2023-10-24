@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context=".ui.login.RegisterActivity">
+
+<include layout="@layout/common_top_bar"
+    android:id="@+id/CommonTopBar"
+    ></include>
+
+    <TextView
+        style="@style/text_bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:paddingTop="30dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="회원가입"
+        android:textColor="@color/black"
+        android:textSize="30sp"></TextView>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/id_ev"
+  android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        style="@style/text_regular"
+        android:layout_width="match_parent"
+        android:imeOptions="actionDone"
+        android:layout_height="70dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/background_corner_10"
+        android:gravity="left|center_vertical"
+        android:hint="아이디"
+        android:paddingLeft="15dp"
+        android:stateListAnimator="@null"
+        android:textColorHint="@color/hint_color"></com.google.android.material.textfield.TextInputEditText>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/pw_ev"
+        style="@style/text_regular"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_corner_10"
+        android:gravity="left|center_vertical"
+        android:hint="비밀번호"
+        android:inputType="textPassword"
+        android:paddingLeft="15dp"
+        android:imeOptions="actionDone"
+        android:stateListAnimator="@null"
+        android:textColorHint="@color/hint_color"></com.google.android.material.textfield.TextInputEditText>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/nickname_ev"
+        style="@style/text_regular"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_corner_10"
+        android:gravity="left|center_vertical"
+        android:hint="닉네임"
+        android:imeOptions="actionDone"
+        android:paddingLeft="15dp"
+        android:stateListAnimator="@null"
+        android:textColorHint="@color/hint_color"></com.google.android.material.textfield.TextInputEditText>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/sendButton"
+        style="@style/text_medium"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:gravity="center"
+        android:stateListAnimator="@null"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:text="확인"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:cornerRadius="10dp"></com.google.android.material.button.MaterialButton>
+
+</LinearLayout>
