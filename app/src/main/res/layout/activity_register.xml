@@ -20,7 +20,7 @@
         android:paddingTop="30dp"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:text="회원가입"
+        android:text="SIGN UP"
         android:textColor="@color/black"
         android:textSize="30sp"></TextView>
 
@@ -35,7 +35,7 @@
         android:layout_marginTop="50dp"
         android:background="@drawable/background_corner_10"
         android:gravity="left|center_vertical"
-        android:hint="아이디"
+        android:hint="ID"
         android:paddingLeft="15dp"
         android:stateListAnimator="@null"
         android:textColorHint="@color/hint_color"></com.google.android.material.textfield.TextInputEditText>
@@ -50,7 +50,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/background_corner_10"
         android:gravity="left|center_vertical"
-        android:hint="비밀번호"
+        android:hint="PW"
         android:inputType="textPassword"
         android:paddingLeft="15dp"
         android:imeOptions="actionDone"
@@ -67,7 +67,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/background_corner_10"
         android:gravity="left|center_vertical"
-        android:hint="닉네임"
+        android:hint="NICKNAME"
         android:imeOptions="actionDone"
         android:paddingLeft="15dp"
         android:stateListAnimator="@null"
@@ -84,7 +84,7 @@
         android:stateListAnimator="@null"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:text="확인"
+        android:text="CONFIRM"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:cornerRadius="10dp"></com.google.android.material.button.MaterialButton>

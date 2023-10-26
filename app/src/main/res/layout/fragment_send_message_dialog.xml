@@ -20,7 +20,7 @@
            <TextView
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:text="장소 : "
+               android:text="business name : "
                android:textColor="@color/black"
                android:textStyle="bold"
                ></TextView>
@@ -41,7 +41,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="이름 : "
+                android:text="nickname : "
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 ></TextView>
@@ -63,7 +63,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="내용 : "
+                android:text="content : "
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 ></TextView>
@@ -83,8 +83,9 @@
 <Button
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="전송"
+    android:text="send"
     android:id="@+id/btn_send"
+    android:layout_gravity="right"
     ></Button>
     </LinearLayout>
 

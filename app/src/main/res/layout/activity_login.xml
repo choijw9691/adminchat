@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="VAMOS"
+            android:text="AdminChat"
             android:textColor="@color/black"
             android:textSize="48sp"></TextView>
 
@@ -35,7 +35,7 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/background_corner_10"
         android:gravity="left|center_vertical"
-        android:hint="아이디"
+        android:hint="ID"
         android:maxLength="11"
         android:paddingLeft="15dp"
         android:stateListAnimator="@null"
@@ -49,7 +49,7 @@
         android:layout_height="70dp"
         android:background="@drawable/background_corner_10"
         android:gravity="left|center_vertical"
-        android:hint="비밀번호"
+        android:hint="PW"
         android:paddingLeft="15dp"
         android:stateListAnimator="@null"
         android:textColorHint="@color/hint_color"></com.google.android.material.textfield.TextInputEditText>
@@ -63,7 +63,7 @@
         android:backgroundTint="@color/colorPrimary"
         android:gravity="center"
         android:stateListAnimator="@null"
-        android:text="로그인"
+        android:text="SIGN IN"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:cornerRadius="10dp"></com.google.android.material.button.MaterialButton>
@@ -109,7 +109,7 @@
         android:backgroundTint="@color/colorPrimary"
         android:gravity="center"
         android:stateListAnimator="@null"
-        android:text="회원가입"
+        android:text="SIGN UP"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:cornerRadius="10dp"></com.google.android.material.button.MaterialButton>

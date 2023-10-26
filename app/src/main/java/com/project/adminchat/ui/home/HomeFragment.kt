@@ -32,7 +32,7 @@ class HomeFragment : Fragment() {
             mainViewModel.setUpdateCurrentGym(it)
             findNavController().navigate(R.id.action_home_to_dashboard)
         }else{
-            Toast.makeText(context, "참여중인 헬스장이 있습니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "There is a participating company.", Toast.LENGTH_SHORT).show()
         }
     }
     private val mainViewModel: MainViewModel by activityViewModels()
@@ -76,7 +76,7 @@ class HomeFragment : Fragment() {
 
     fun initSearchView() {
         binding.searchView.setIconifiedByDefault(false)
-        binding.searchView.queryHint = "헬스장을 검색해 주세요."
+        binding.searchView.queryHint = "Please search for a company."
         binding.searchView.setOnClickListener {
             binding.searchView.isIconified = false
         }

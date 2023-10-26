@@ -66,12 +66,13 @@ Log.d("JIWOUNG","fnwelkfewfwef")
 
         val message = data["message"] ?: "0"
         val location = data["location"] ?: "장소없음"
-        val name = data["name"] ?: "이름없음"
+        val myName = data["myName"] ?: "이름없음"
+        val yourName = data["yourName"] ?: "이름없음"
         val content = data["content"] ?: "내용없음"
         val toToken = data["toToken"] ?: ""
         val fromToken = data["fromToken"] ?: ""
 
-        Log.d("JWIJU","fklnewmrs4lm "+message+"||"+location+"||"+name+"||"+content)
+        Log.d("JWIJU","fklnewmrs4lm "+message+"||"+location+"||"+myName+"||"+yourName+"||"+content)
 
         builder
             .setSmallIcon(com.project.adminchat.R.drawable.ic_launcher_background)
@@ -88,13 +89,14 @@ Log.d("JIWOUNG","fnwelkfewfwef")
             val intent = Intent("FCM_INTENT_FILTER")
             intent.putExtra("message",message)
             intent.putExtra("location",location)
-            intent.putExtra("name",name)
+            intent.putExtra("myName",myName)
+            intent.putExtra("yourName",yourName)
             intent.putExtra("content",content)
             intent.putExtra("toToken",toToken)
             intent.putExtra("fromToken",fromToken)
             LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
         } else {
-            saveMessageToSharedPreferences(message,location,name,content,toToken,fromToken)
+            saveMessageToSharedPreferences(message,location,myName,yourName,content,toToken,fromToken)
         }
 
     }
@@ -110,12 +112,12 @@ Log.d("JIWOUNG","fnwelkfewfwef")
         return false
     }
 
-    private fun saveMessageToSharedPreferences(message: String, location: String,name:String,content:String,toToken:String,fromToken:String) {
+    private fun saveMessageToSharedPreferences(message: String, location: String,myName:String,yourName:String,content:String,toToken:String,fromToken:String) {
         val currentTimeMillis = System.currentTimeMillis()
         val sharedPreferences = getSharedPreferences("FCM_DATA", Context.MODE_PRIVATE)
         val messages = sharedPreferences.getStringSet("messages", mutableSetOf()) ?: mutableSetOf()
 
-        val messageData = "$currentTimeMillis|~|$message|~|$location|~|$name|~|$content|~|$toToken|~|$fromToken"
+        val messageData = "$currentTimeMillis|~|$message|~|$location|~|$myName|~|$yourName|~|$content|~|$toToken|~|$fromToken"
         messages.add(messageData)
 
         sharedPreferences.edit().apply {

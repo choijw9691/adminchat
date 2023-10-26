@@ -50,14 +50,16 @@ class MainActivity : AppCompatActivity() {
 
             val message = intent.getStringExtra("message")?:""
             val location = intent.getStringExtra("location")?:""
-            val name = intent.getStringExtra("name")?:""
+            val myName = intent.getStringExtra("myName")?:""
+            val yourName = intent.getStringExtra("yourName")?:""
             val content = intent.getStringExtra("content")?:""
             val toToken = intent.getStringExtra("toToken")?:""
             val fromToken = intent.getStringExtra("fromToken")?:""
 
-            Log.d("JIWOUNG","ernklgerg11" +toToken+"||"+fromToken)
 
-            SendMessageDialog("",message,location,name,content,toToken,fromToken).show(supportFragmentManager, "TAG")
+            Log.d("JIWOUNG","ernklgerg11" +myName+"||"+yourName+"||"+location)
+
+            SendMessageDialog("",message,location,myName,yourName,content,toToken,fromToken).show(supportFragmentManager, "TAG")
         }
     }
     private lateinit var binding: ActivityMainBinding
@@ -259,23 +261,24 @@ class MainActivity : AppCompatActivity() {
         Log.d("JIWOUNG","fnklewfewf")
 
         messages?.forEach { messageData ->
-            Log.d("JIWOUNG","fnklewfewf1")
 
             val parts = messageData.split("|~|")
             val timestamp = parts[0]
             val message = parts[1]
             val location = parts[2]
-            val name = parts[3]
-            val content = parts[4]
-            val toToken = parts[5]
-            val fromToken = parts[6]
+            val myName = parts[3]
+            val yourName = parts[4]
+            val content = parts[5]
+            val toToken = parts[6]
+            val fromToken = parts[7]
+            Log.d("JIWOUNG","fnklewfewf154: "+location+"||"+myName)
 
-            showDialog(messageData,message, location,name,content,toToken,fromToken)
+            showDialog(messageData,message, location,myName,yourName,content,toToken,fromToken)
         }
     }
 
-    fun showDialog(messageKey:String,message:String, location:String,name:String,content:String,toToken:String,fromToken:String){
-        SendMessageDialog(messageKey,message, location,name,content,toToken,fromToken).show(supportFragmentManager,"")
+    fun showDialog(messageKey:String,message:String, location:String,myName:String,yourName:String,content:String,toToken:String,fromToken:String){
+        SendMessageDialog(messageKey,message, location,myName,yourName,content,toToken,fromToken).show(supportFragmentManager,"")
     }
 
 }

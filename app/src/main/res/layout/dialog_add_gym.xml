@@ -20,18 +20,19 @@
             android:textSize="20dp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:text="헬스장 추가"
+            android:text="ADD COMPANY"
             ></TextView>
+
         <EditText
+            android:id="@+id/name_ev"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/name_ev"
-            android:hint="클릭하여 헬스장 이름을 추가해주세요."
-            ></EditText>
+            android:hint="Click to add your company name."></EditText>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="전송"
+            android:text="SEND"
             android:backgroundTint="@android:color/transparent"
             android:textColor="@color/black"
             android:layout_gravity="right"

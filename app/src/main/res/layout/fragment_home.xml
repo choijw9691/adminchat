@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_corner_10"
 
-                android:queryHint="헬스장을 검색해 주세요."></SearchView>
+                android:queryHint="Please search for a company."></SearchView>
         </LinearLayout>
 <RelativeLayout
     android:layout_width="match_parent"

@@ -36,7 +36,7 @@ class DashboardFragment : Fragment() {
         MainActivity.myProfile?.let { it1 ->
             Log.d("JIWOUNG","fnklewm4lm "+it.token+"||"+it1.token)
             SendMessageDialog("",SEND_MESSAGE.toString(),binding.gymNameTv.text.toString(),
-                it1.nickname,"",it.token,it1.token).show(parentFragmentManager,"")
+                it1.nickname,it.nickname,"",it.token,it1.token).show(parentFragmentManager,"")
         }
     }
 
@@ -85,7 +85,7 @@ class DashboardFragment : Fragment() {
             mainViewModel.currentGym.collectLatest {
                 if (it != null) {
                     binding.gymNameTv.text = it.name
-                    binding.gymMemberSizeTv.text= "인원(${it.userList.size-1})"
+                    binding.gymMemberSizeTv.text= "Number of people(${it.userList.size-1})"
                     gymAdapter.submitList(it.userList.filter { it != MainActivity.myProfile })
                 }
             }
@@ -111,7 +111,7 @@ fun getChangedListener(){
                 if (it.contains(MainActivity.myProfile)){
                     Log.d("JIWOUNG", "UpdateduserList1111:")
 
-                    binding.gymMemberSizeTv.text= "인원(${userList.size-1})"
+                    binding.gymMemberSizeTv.text= "Number of people(${userList.size-1})"
                     gymAdapter.submitList(userList.filter { it != MainActivity.myProfile })
                 }
             }
