@@ -43,51 +43,29 @@ class SendMessageDialog(
 ) : DialogFragment(), OnClickListener {
     lateinit var binding: FragmentSendMessageDialogBinding
     private val mainViewModel: MainViewModel by activityViewModels()
-    private val MESSAGING_SCOPE = "https://www.googleapis.com/auth/firebase.messaging"
-    private val SCOPES = arrayOf(MESSAGING_SCOPE)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentSendMessageDialogBinding.inflate(inflater, container, false)
-        binding.textview1.setOnClickListener(this)
-        binding.textview2.setOnClickListener(this)
-        binding.textview3.setOnClickListener(this)
-        binding.textview4.setOnClickListener(this)
-
+        binding.btnSend.setOnClickListener(this)
         Log.d(
             "JIWOUNG",
             "fmklewnfklewf: " + location + "||" + name + "||" + content + "||" + toToken + "||" + fromToken
         )
-        if (message == "0") {
-            binding.dataContainer.visibility = View.GONE
-            binding.textview1.text = "카운터 앞에서\n 기다릴게요!"
-            binding.textview2.text = "탈의실 앞에서\n 기다릴게요!"
-            binding.textview3.text = "저랑 같이\n 운동해요!"
-            binding.textview4.text = "입구에서\n 기다릴게요!"
-        } else if (message == "1") {
-            binding.dataContainer.visibility = View.VISIBLE
-            binding.textview1.text = "네 좋아요!"
-            binding.textview2.text = "죄송해요!"
-            binding.textview3.visibility = View.GONE
-            binding.textview4.visibility = View.GONE
-            val notificationManager =
-                activity?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.cancel(2)
-        } else {
-            binding.dataContainer.visibility = View.VISIBLE
-            binding.textview1.text = content
-            binding.textview2.visibility = View.GONE
-            binding.textview3.visibility = View.GONE
-            binding.textview4.visibility = View.GONE
+        if (message == Constants.SEND_MESSAGE.toString()) {
+            binding.btnSend.text = "전송"
+            binding.contentTv.setText("")
+        } else if (message == Constants.RECEIVE_MESSAGE.toString()) {
+            binding.btnSend.text = "답장"
+            binding.contentTv.setText(content)
             val notificationManager =
                 activity?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.cancel(2)
         }
         binding.locationTv.text = location
         binding.nameTv.text = name
-        binding.contentTv.text = content
         removeFromSharedPreferences(messageKey)
 
         return binding.root
@@ -123,7 +101,7 @@ CoroutineScope(Dispatchers.IO).launch {
     val mediaType = "application/json".toMediaType()
     val body = """{
   "message": {
-    "token": "dAZFpZLCTmmTTu4M90IP5y:APA91bERxB8-uJ8pAvjqJsFLnPgMumBjWu0OWK6H-Atuhq8oFe-8MivHAJyqM3QQugik_1spMUs-aePIGoBb4tvK4KByFN7FPRjLg5mQTcoatLrDJAQqGSLZHMeEKMJmExQdoztf9Re8",
+    "token": "${targetToken}",
     "notification": {
       "title": "Notification Title",
       "body": "Notification Body"
@@ -181,39 +159,47 @@ CoroutineScope(Dispatchers.IO).launch {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.textview1, R.id.textview2, R.id.textview3, R.id.textview4 -> {
-                if (message == Constants.SEND_MESSAGE.toString()) {
-                    sendFCM(
-                        toToken,
-                        Constants.RECEIVE_MESSAGE,
-                        location,
-                        name,
-                        (v as TextView).text.toString().replace("\n", ""),
-                        fromToken
-                    )
-                    dismiss()
-                } else if (message ==Constants.RECEIVE_MESSAGE.toString()) {
-                    Log.d("JIWOUNG","fklewnfkll4m "+fromToken+"||"+toToken)
-                    MainActivity.myProfile?.let {
+            R.id.btn_send-> {
+                if (binding.btnSend.text == "전송"){
+                    if (message == Constants.SEND_MESSAGE.toString()) {
                         sendFCM(
-                            fromToken,
-                            Constants.REPLY_MESSAGE,
+                            toToken,
+                            Constants.RECEIVE_MESSAGE,
                             location,
-                            it.nickname,
-                            (v as TextView).text.toString().replace("\n", ""),
-                            toToken
+                            name,
+                            binding.contentTv.text.toString(),
+                            fromToken
                         )
+                        dismiss()
+                    } else if (message ==Constants.RECEIVE_MESSAGE.toString()) {
+                        Log.d("JIWOUNG","fklewnfkll4m "+fromToken+"||"+toToken)
+                        MainActivity.myProfile?.let {
+                            sendFCM(
+                                fromToken,
+                                Constants.SEND_MESSAGE,
+                                location,
+                                it.nickname,
+                                (v as TextView).text.toString().replace("\n", ""),
+                                toToken
+                            )
+                        }
+                        dismiss()
+                    } else {
+                        dismiss()
                     }
+                }else{
                     dismiss()
-                } else {
-                    dismiss()
+                    MainActivity.myProfile?.let {
+                        SendMessageDialog(messageKey, Constants.SEND_MESSAGE.toString(),location,
+                            it.nickname,content,fromToken,toToken).show(parentFragmentManager,"")
+                    }
                 }
             }
         }
     }
     @Throws(IOException::class)
     private fun getAccessToken(): String? {
-        binding.textview1.context.assets.open("service-account.json").use { inputStream ->
+        binding.dataContainer.context.assets.open("service-account.json").use { inputStream ->
             val googleCredentials = GoogleCredentials.fromStream(inputStream)
                 .createScoped(listOf("https://www.googleapis.com/auth/firebase.messaging"))
             googleCredentials.refreshIfExpired()

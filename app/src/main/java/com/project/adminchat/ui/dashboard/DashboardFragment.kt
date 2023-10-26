@@ -35,7 +35,6 @@ class DashboardFragment : Fragment() {
     var gymAdapter = DashboardAdapter{
         MainActivity.myProfile?.let { it1 ->
             Log.d("JIWOUNG","fnklewm4lm "+it.token+"||"+it1.token)
-
             SendMessageDialog("",SEND_MESSAGE.toString(),binding.gymNameTv.text.toString(),
                 it1.nickname,"",it.token,it1.token).show(parentFragmentManager,"")
         }

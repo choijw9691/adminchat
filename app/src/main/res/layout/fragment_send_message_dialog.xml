@@ -13,7 +13,7 @@
         android:id="@+id/data_container"
         android:orientation="vertical">
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             >
@@ -67,77 +67,26 @@
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 ></TextView>
-            <TextView
+        </LinearLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
+            <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="카온터 앞"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:id="@+id/content_tv"
-                ></TextView>
-        </LinearLayout>
+                ></EditText>
+        </FrameLayout>
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="전송"
+    android:id="@+id/btn_send"
+    ></Button>
     </LinearLayout>
 
-    <GridLayout
-        android:id="@+id/gridLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:columnCount="2"
-        android:padding="15dp"
-        android:rowCount="2">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/textview1"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/colorPrimary"
-            android:gravity="center"
-            android:padding="15dp"
-            android:text="카운터 앞에서\n 기다릴게요!"
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            app:strokeWidth="1dp"></com.google.android.material.button.MaterialButton>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/textview2"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/colorPrimary"
-            android:gravity="center"
-            android:padding="15dp"
-            android:text="탈의실 앞에서\n 기다릴게요!"
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            app:strokeWidth="1dp"></com.google.android.material.button.MaterialButton>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/textview3"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/colorPrimary"
-            android:gravity="center"
-            android:padding="15dp"
-            android:text="저랑 같이\n 운동해요!"
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            app:strokeWidth="1dp"></com.google.android.material.button.MaterialButton>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/textview4"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/colorPrimary"
-            android:gravity="center"
-            android:padding="15dp"
-            android:text="입구에서\n 기다릴게요!"
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            app:strokeWidth="1dp"></com.google.android.material.button.MaterialButton>
-    </GridLayout>
 
 </LinearLayout>
