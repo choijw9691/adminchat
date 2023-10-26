@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
+import com.google.auth.oauth2.GoogleCredentials
 import com.project.adminchat.MainActivity
 import com.project.adminchat.R
 import com.project.adminchat.common.Constants
@@ -26,7 +27,10 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
+import java.io.FileInputStream
 import java.io.IOException
+import java.util.Arrays
+
 
 class SendMessageDialog(
     var messageKey: String,
@@ -39,7 +43,8 @@ class SendMessageDialog(
 ) : DialogFragment(), OnClickListener {
     lateinit var binding: FragmentSendMessageDialogBinding
     private val mainViewModel: MainViewModel by activityViewModels()
-
+    private val MESSAGING_SCOPE = "https://www.googleapis.com/auth/firebase.messaging"
+    private val SCOPES = arrayOf(MESSAGING_SCOPE)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -113,50 +118,57 @@ class SendMessageDialog(
             mainViewModel.getServerKeyFromFirestore(
                 onSuccess = { serverKey ->
                     Log.d("JIWOUNG", "fnelwkmursl4umrsl4m5: "+toToken+"||"+fromToken)
-
-                    val client = OkHttpClient()
-                    val mediaType = "application/json".toMediaType()
-                    val body = """
-        {
-            "to":"$targetToken",
-            "data":{
-            "message":"${message}",
+CoroutineScope(Dispatchers.IO).launch {
+    val client = OkHttpClient()
+    val mediaType = "application/json".toMediaType()
+    val body = """{
+  "message": {
+    "token": "dAZFpZLCTmmTTu4M90IP5y:APA91bERxB8-uJ8pAvjqJsFLnPgMumBjWu0OWK6H-Atuhq8oFe-8MivHAJyqM3QQugik_1spMUs-aePIGoBb4tvK4KByFN7FPRjLg5mQTcoatLrDJAQqGSLZHMeEKMJmExQdoztf9Re8",
+    "notification": {
+      "title": "Notification Title",
+      "body": "Notification Body"
+    },
+        "data": {
+               "message":"${message}",
                 "location":"${location}",
                 "name":"${name}",
                 "content":"${content}",
                 "toToken":"${targetToken}",
                 "fromToken":"${fromToken}"
+    }
+  }
+}""".trimIndent().toRequestBody(mediaType)
+    val aa =getAccessToken().toString()
+    Log.d("JIWOUNG","fkwnelfkul4rsfew: "+aa)
+    val request = Request.Builder()
+        .url("https://fcm.googleapis.com/v1/projects/adminchat-9512f/messages:send")
+        .post(body)
+        .addHeader("Authorization", "Bearer ${aa}")
+        .addHeader("Content-Type", "application/json")
+        .build()
+    // Log.d("JIWOUNG", "fnelwkmursl4umrsl4m2: "+serverKey)
+
+    client.newCall(request).enqueue(object : Callback {
+        override fun onFailure(call: Call, e: IOException) {
+            e.printStackTrace()
+            Log.d("JIWOUNG", "fnelwkmursl4umrsl4m1")
+
+        }
+
+        override fun onResponse(call: Call, response: Response) {
+            if (response.isSuccessful) {
+                println("FCM message sent successfully!")
+            } else {
+                // HTTP 응답의 본문을 문자 스트림으로 읽어옵니다.
+                val responseBody = response.body?.charStream()
+
+                // 응답 본문을 문자열로 읽고 출력합니다.
+                val responseText = responseBody?.readText()
+                Log.d("JIWOUNG", "Response Body: $responseText")
             }
         }
-    """.trimIndent().toRequestBody(mediaType)
-    val request = Request.Builder()
-                        .url("https://fcm.googleapis.com/fcm/send")
-                        .post(body)
-                        .addHeader("Authorization", "key=${serverKey}")
-                        .addHeader("Content-Type", "application/json")
-                        .build()
-                   // Log.d("JIWOUNG", "fnelwkmursl4umrsl4m2: "+serverKey)
-
-                    client.newCall(request).enqueue(object : Callback {
-                        override fun onFailure(call: Call, e: IOException) {
-                            e.printStackTrace()
-                            Log.d("JIWOUNG", "fnelwkmursl4umrsl4m1")
-
-                        }
-
-                        override fun onResponse(call: Call, response: Response) {
-                            if (response.isSuccessful) {
-                                println("FCM message sent successfully!")
-                            } else {
-                                // HTTP 응답의 본문을 문자 스트림으로 읽어옵니다.
-                                val responseBody = response.body?.charStream()
-
-                                // 응답 본문을 문자열로 읽고 출력합니다.
-                                val responseText = responseBody?.readText()
-                                Log.d("JIWOUNG", "fnelwkmursl4umrsl4m3: $responseText")
-                            }
-                        }
-                    })
+    })
+}
                 },
                 onFailure = { exception ->
                     Log.d("JIWOUNG", "fnelwkmursl4umrsl4m4")
@@ -197,6 +209,15 @@ class SendMessageDialog(
                     dismiss()
                 }
             }
+        }
+    }
+    @Throws(IOException::class)
+    private fun getAccessToken(): String? {
+        binding.textview1.context.assets.open("service-account.json").use { inputStream ->
+            val googleCredentials = GoogleCredentials.fromStream(inputStream)
+                .createScoped(listOf("https://www.googleapis.com/auth/firebase.messaging"))
+            googleCredentials.refreshIfExpired()
+            return googleCredentials.accessToken.tokenValue
         }
     }
 }
