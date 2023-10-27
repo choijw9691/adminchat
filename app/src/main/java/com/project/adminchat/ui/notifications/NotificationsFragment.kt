@@ -52,7 +52,7 @@ class NotificationsFragment : Fragment() {
                 mainViewModel.updateUserWithGym(it1){ isSuccess ->
                     if (isSuccess) {
                         // 업데이트 성공
-                        Toast.makeText(context, "프로필이 수정되었습니다.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Your profile has been edited.", Toast.LENGTH_SHORT).show()
                         binding.nicknameEv.isEnabled = false
                         binding.todayWorkoutEv.isEnabled = false
                         binding.editBtn.visibility = View.VISIBLE
@@ -65,7 +65,8 @@ class NotificationsFragment : Fragment() {
             }
         }
         binding.logoutBtn.setOnClickListener {
-            ConfirmationDialog().show(childFragmentManager,"정말로 로그아웃 하시겠습니까?",{
+            ConfirmationDialog().show(childFragmentManager,"Are you sure you want to log out?             " +
+                    "+",{
                 val firebaseAuth = FirebaseAuth.getInstance()
                 firebaseAuth.signOut()
                 var intent = Intent(context,LoginActivity::class.java)

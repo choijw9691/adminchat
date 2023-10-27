@@ -57,12 +57,12 @@ class SendMessageDialog(
             "fmklewnfklewf: " + location + "||" + myName + "||" + yourName + "||" + content + "||" + toToken + "||" + fromToken
         )
         if (message == Constants.SEND_MESSAGE.toString()) {
-            binding.btnSend.text = "전송"
+            binding.btnSend.text = "SEND"
             binding.contentTv.setText("")
             binding.contentTv.isEnabled = true
             binding.nameTv.text = yourName
         } else if (message == Constants.RECEIVE_MESSAGE.toString()) {
-            binding.btnSend.text = "답장"
+            binding.btnSend.text = "REPLY"
             binding.contentTv.isEnabled = false
 
             binding.contentTv.setText(content)
@@ -168,7 +168,7 @@ class SendMessageDialog(
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btn_send -> {
-                if (binding.btnSend.text == "전송") {
+                if (binding.btnSend.text == "SEND") {
                     if (message == Constants.SEND_MESSAGE.toString()) {
                         sendFCM(
                             toToken,

@@ -192,7 +192,7 @@ class MainActivity : AppCompatActivity() {
             .addOnSuccessListener { documentReference ->
 
                 // 이후 작업을 수행하거나 추가된 문서 ID(gymId)를 사용할 수 있습니다.
-                Toast.makeText(this, "헬스장 추가에 성공하였습니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "The addition of the company was successful.", Toast.LENGTH_SHORT).show()
                 LoadingDialog.dismiss()
                 sharedViewModel.getAllGymsFromFirestore()
 
@@ -201,7 +201,7 @@ class MainActivity : AppCompatActivity() {
                 // 추가 실패
                 // 오류 처리를 수행하거나 사용자에게 알림을 표시할 수 있습니다.
                 Log.d("JIWOUNG", "exnklefw: " + exception.message.toString())
-                Toast.makeText(this, "헬스장 추가에 실패하였습니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Failed to add company.", Toast.LENGTH_SHORT).show()
                 LoadingDialog.dismiss()
 
             }

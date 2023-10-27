@@ -30,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getSupportActionBar()?.hide();//Ocultar ActivityBar anterior
+        getSupportActionBar()?.hide()
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -61,10 +61,10 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     // User is signed in, you can now use the user ID token to access Firestore
-                    Toast.makeText(applicationContext, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Login was successful.", Toast.LENGTH_SHORT).show()
                     task.result.user?.let { getUser(it.uid) }
                 } else {
-                    Toast.makeText(applicationContext, "아이디 또는 비밀번호가 잘못됐습니다.", Toast.LENGTH_SHORT)
+                    Toast.makeText(applicationContext, "Your ID or password is incorrect.", Toast.LENGTH_SHORT)
                         .show()
                 }
             }

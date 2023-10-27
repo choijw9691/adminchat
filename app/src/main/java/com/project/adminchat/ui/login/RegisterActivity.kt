@@ -21,13 +21,13 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.sendButton.setOnClickListener {
             if (binding.idEv.text.toString() == "" || binding.idEv.text.toString() == null) {
-                Toast.makeText(this, "아이디를 채워주세요.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please fill in your ID.", Toast.LENGTH_SHORT).show()
 
             } else if(binding.pwEv.text.toString().length < 6 || binding.pwEv.text.toString() == null){
-                    Toast.makeText(this, "비밀번호는 최소 6글자 이상이어야 합니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Password must be at least 6 characters long.", Toast.LENGTH_SHORT).show()
                 }
             else if(binding.nicknameEv.text.toString() == null || binding.nicknameEv.text.toString() ==""){
-                Toast.makeText(this, "닉네임을 채워주세요.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please fill in your nickname.", Toast.LENGTH_SHORT).show()
 
             }
             else {
@@ -60,10 +60,10 @@ class RegisterActivity : AppCompatActivity() {
             .addOnFailureListener { exception ->
                 if (exception is FirebaseAuthUserCollisionException) {
                     // Handle email already in use error
-                    Toast.makeText(this, "기존에 사용 계정이 있습니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "we already have an account.", Toast.LENGTH_SHORT).show()
                 } else {
                     Log.d("JIWOUNG", "errorcheck1: " + exception.message)
-                    Toast.makeText(this, "가입에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Sign up failed.", Toast.LENGTH_SHORT).show()
                 }
             }
 
